@@ -28,26 +28,14 @@ namespace LibraryAnalysisDown
         }
         private void AnalysisOnPrintCompileInfo(string text)
         {
-            richTextBox1.Text += text;
+            richTextBox1.AppendText(text + "\r");
+            richTextBox1.ScrollToCaret();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             richTextBox1.Clear();
             analysis.Initialize(richTextBox1.Text, textBox1.Text);
-        }
-
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
-        {
-           // richTextBox1.SelectionStart = richTextBox1.Text.Length;
-           // richTextBox1.ScrollToCaret();
-            
-        }
-
-        private void richTextBox2_TextChanged(object sender, EventArgs e)
-        {
-            richTextBox2.SelectionStart = richTextBox2.Text.Length;
-            richTextBox2.ScrollToCaret();
         }
     }
 }
