@@ -115,7 +115,7 @@ namespace AnalysisDown
                     }
                     else
                     {
-                        AnalysisEvent.PrintMessage("Введите вещественное" + '\n' + " число с порядком!" + '\r' + "Ошибка --> " + str1);
+                        AnalysisEvent.PrintMessage.Invoke("Введите вещественное" + '\n' + " число с порядком!" + '\r' + "Ошибка --> " + str1);
                         str = "";
                         return -1;
                     }
@@ -172,7 +172,7 @@ namespace AnalysisDown
                 if (arrZDown[jTr - 1, iTr - 1] == 28)
                 {
                     richTextBox1 += "Ошибка при выполнении нисходящего разбора!";
-                    AnalysisEvent.PrintCompileInfo(richTextBox1);
+                    AnalysisEvent.PrintCompileInfo.Invoke(richTextBox1);
                     Array.Clear(arrStr, 0, arrStr.Length);
                     Array.Clear(arrM, 0, arrM.Length);
                     str = "";
@@ -213,7 +213,7 @@ namespace AnalysisDown
             richTextBox1 += "Магазин:" + M + '\n';
             richTextBox1 += "Правила:" + pr + '\n';
             richTextBox1 += "      " + '\n';
-            AnalysisEvent.PrintCompileInfo(richTextBox1);
+            AnalysisEvent.PrintCompileInfo.Invoke(richTextBox1);
         }
         public int[,] LoadingTabel
         {
