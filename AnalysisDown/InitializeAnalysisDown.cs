@@ -135,13 +135,6 @@ namespace AnalysisDown
         {
             analysis_down.LoadingAnalysis(m_tabel, Rule, Terminals, NTerminals);
             analysis_down.AnalysisStart(richTextBox1, text);
-            //analysis_down.LoadingTabel = m_tabel;
-            //analysis_down.LoadingGrammatics = Rule;
-            //analysis_down.LoadingTerminals = Terminals;
-            //analysis_down.LoadingNTerminals = NTerminals;
-            
-           
-            
         }
 
         AnalysisDown analysis_down = new AnalysisDown();
