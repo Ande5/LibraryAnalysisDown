@@ -137,6 +137,6 @@ namespace AnalysisDown
             analysis_down.AnalysisStart(richTextBox1, text);
         }
 
-        AnalysisDown analysis_down = new AnalysisDown();
+        AnalysisDownExp analysis_down = new AnalysisDownExp();
     }
 }
