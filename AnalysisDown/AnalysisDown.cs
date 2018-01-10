@@ -10,7 +10,6 @@ namespace AnalysisDown
     {
         public string str = "";
         public int[,] arrZDown;
-      //  ReadGrammatics read_grammatics = new ReadGrammatics();
         List<Grammatics> arrNT ,arrNTT , arrPr;
         public Grammatics[] arrStr = new Grammatics[1000];
         public string[] arrM = new string[1000];
@@ -22,7 +21,6 @@ namespace AnalysisDown
         public void Down(string richTextBox1, string text)
         {
             ind = 0;
-           // richTextBox1.Clear();
             str += text + " $";
             int l = 0;
             bool flag = false;
@@ -58,13 +56,11 @@ namespace AnalysisDown
                             if (arrM[i].Length > 8)
                             {
                                 l = -1;
-                              //  MessageBox.Show("Длина идентификатора должна быть меньше 8 символов!" + '\n' + "Ошибка --> " + arrM[i]);
                                 AnalysisEvent.PrintMessage("Длина идентификатора должна быть меньше 8 символов!" + '\n' + "Ошибка --> " + arrM[i]);
                             }
                             if (arrM[i].Length == 0)
                             {
                                 l = -1;
-                            //    MessageBox.Show("Длина идентификатора должна быть больше 0 символов!" + '\n' + "Слово № " + (i + 1).ToString() + " является пробелом.");
                                 AnalysisEvent.PrintMessage("Длина идентификатора должна быть больше 0 символов!" + '\n' + "Слово № " + (i + 1).ToString() + " является пробелом.");
                                 str = null;
                             }
@@ -119,7 +115,6 @@ namespace AnalysisDown
                     }
                     else
                     {
-                      //  MessageBox.Show("Введите вещественное" + '\n' + " число с порядком!" + '\r' + "Ошибка --> " + str1);
                         AnalysisEvent.PrintMessage("Введите вещественное" + '\n' + " число с порядком!" + '\r' + "Ошибка --> " + str1);
                         str = "";
                         return -1;
@@ -132,7 +127,6 @@ namespace AnalysisDown
         }
         public void algoritmUp(string richTextBox1)
         {
-          
             string M = "S $", pr = "";
             int IarrStr = 0, jTr = 0, f = 0;
             printDown(arrStr, M, pr, richTextBox1);
@@ -215,8 +209,6 @@ namespace AnalysisDown
             {
                 s1 += arrR[i].m_name + " ";
             }
-            
-            
             richTextBox1 += "Строка:" + s1 + '\n';
             richTextBox1 += "Магазин:" + M + '\n';
             richTextBox1 += "Правила:" + pr + '\n';
@@ -309,7 +301,6 @@ namespace AnalysisDown
             Array.Clear(arrStr, 0, arrStr.Length);          
             Array.Clear(arrM, 0, arrM.Length);
             probels.Clear();
-            //try { arrNT.Clear(); arrNTT.Clear(); arrPr.Clear(); }catch { };
             arrZDown  =  tabel; arrPr = Grammatics;
             arrNT = Terminals; arrNTT = NTerminals;
         }
