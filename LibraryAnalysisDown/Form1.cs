@@ -39,8 +39,9 @@ namespace LibraryAnalysisDown
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
-            richTextBox1.SelectionStart = richTextBox1.Text.Length;
-            richTextBox1.ScrollToCaret();
+           // richTextBox1.SelectionStart = richTextBox1.Text.Length;
+           // richTextBox1.ScrollToCaret();
+            
         }
 
         private void richTextBox2_TextChanged(object sender, EventArgs e)
