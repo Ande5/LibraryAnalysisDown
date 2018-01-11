@@ -87,11 +87,7 @@ namespace AnalysisDown
 
                 }
             }
-            for (int i = 0; i < arrNTT.Count; i++)
-            {
-                if (Convert.ToString(M[0]) == arrNTT[i].m_name)
-                    jTr = arrNTT[i].number;
-            }
+           
         }
 
         public void Search_Terminals(string [] str, int index)
