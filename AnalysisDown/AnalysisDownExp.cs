@@ -15,13 +15,13 @@ namespace AnalysisDown
         List<Grammatics> arrStr = new List<Grammatics>();
         public string[] arrM = new string[1000]; // нужно сделать локальной
       //  public Grammatics elemUStr = new Grammatics(); // не нужно
-        public int ind = 0;
+       // public int ind = 0; не нужно
         public Grammatics eps, id, constNT;
         public List<Grammatics> probels = new List<Grammatics>();
         //Метод нисходящего разбора
         public void Down(string richTextBox1, string text)
         {
-            ind = 0;
+           // ind = 0;
             str += text + " $";
             int l = 0;
             bool check_number = true;
