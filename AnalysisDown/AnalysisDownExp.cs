@@ -38,11 +38,11 @@ namespace AnalysisDown
                         flag = true;
                     }
                 }
-                if (arrM[i] == "$" && check_number != false)
-                {
-                    ElementUpStr(eps);
-                    flag = true;
-                }
+                //if (arrM[i] == "$" && check_number != false)
+                //{
+                //    ElementUpStr(eps);
+                //    flag = true;
+                //}
                 if (flag == false && check_number != false)
                 {
                     check_number = CheckNumber(arrM[i]);
@@ -284,7 +284,7 @@ namespace AnalysisDown
             {
                 switch (gr.m_name)
                 {
-                    case "eps":
+                    case "$":
                         {
                             eps.m_name = gr.m_name;
                             eps.number = gr.number;

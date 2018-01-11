@@ -84,7 +84,7 @@ namespace AnalysisDown
             new Grammatics(12,"-"),
             new Grammatics(13,"<"),
             new Grammatics(14,"|"),
-            new Grammatics(15,"eps"),
+            new Grammatics(15,"$"),
         };
 
         List<Grammatics> NTerminals = new List<Grammatics>()
