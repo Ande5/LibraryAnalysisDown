@@ -11,9 +11,10 @@ namespace AnalysisDown
         public string str = ""; // не нужна
         public int[,] arrZDown;
         List<Grammatics> arrNT, arrNTT, arrPr;
-        public Grammatics[] arrStr = new Grammatics[1000];
+       // public Grammatics[] arrStr = new Grammatics[1000];
+        List<Grammatics> arrStr = new List<Grammatics>();
         public string[] arrM = new string[1000]; // нужно сделать локальной
-        public Grammatics elemUStr = new Grammatics();
+      //  public Grammatics elemUStr = new Grammatics(); // не нужно
         public int ind = 0;
         public Grammatics eps, id, constNT;
         public List<Grammatics> probels = new List<Grammatics>();
@@ -74,10 +75,11 @@ namespace AnalysisDown
         }
         public void ElementUpStr(Grammatics element)
         {
-            elemUStr.m_name = element.m_name;
-            elemUStr.number = element.number;
-            arrStr[ind] = elemUStr;
-            ind = (element.m_name == eps.m_name) ? ind : ind += 1;
+           // elemUStr.m_name = element.m_name;
+           // elemUStr.number = element.number;
+           // arrStr[ind] = element;
+            arrStr.Add(element);
+          //  ind = (element.m_name == eps.m_name) ? ind : ind += 1;
         }
         ////Метод для работы с числами для нисходящего разбора
         //public bool IsNumberDown(string str2, string dopstr)
@@ -178,22 +180,24 @@ namespace AnalysisDown
                 {
                     richTextBox1 += "Ошибка при выполнении нисходящего разбора!";
                     AnalysisEvent.PrintCompileInfo(richTextBox1);
-                    Array.Clear(arrStr, 0, arrStr.Length);
+                    //Array.Clear(arrStr, 0, arrStr.Length);
+                    arrStr.Clear();
                     Array.Clear(arrM, 0, arrM.Length);
                     str = "";
                     break;
                 }
             }
         }
-        public Grammatics[] delFirstDown(Grammatics[] down)
+        public List<Grammatics> delFirstDown(List<Grammatics> down)
         {
-            Grammatics[] newd = new Grammatics[down.Length - 1];
+            List<Grammatics> newd = new List<Grammatics>();
             Grammatics elemDel = new Grammatics();
-            for (int i = 1; i < down.Length; i++)
+            for (int i = 1; i < down.Count; i++)
             {
                 elemDel.number = down[i].number;
                 elemDel.m_name = down[i].m_name;
-                newd[i - 1] = elemDel;
+                //newd[i - 1] = elemDel;
+                newd.Add(elemDel);
             }
             return newd;
         }
@@ -207,10 +211,10 @@ namespace AnalysisDown
             }
             return newM;
         }
-        public void printDown(Grammatics[] arrR, string M, string pr, string richTextBox1)
+        public void printDown(List<Grammatics> arrR, string M, string pr, string richTextBox1)
         {
             string s1 = "";
-            for (int i = 0; i < arrR.Length; i++)
+            for (int i = 0; i < arrR.Count; i++)
             {
                 s1 += arrR[i].m_name + " ";
             }
@@ -303,7 +307,8 @@ namespace AnalysisDown
         }
         public void LoadingAnalysis(int[,] tabel, List<Grammatics> Grammatics, List<Grammatics> Terminals, List<Grammatics> NTerminals)
         {
-            Array.Clear(arrStr, 0, arrStr.Length);
+            //Array.Clear(arrStr, 0, arrStr.Length);
+            arrStr.Clear();
             Array.Clear(arrM, 0, arrM.Length);
             probels.Clear();
             arrZDown = tabel; arrPr = Grammatics;

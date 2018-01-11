@@ -10,6 +10,7 @@ namespace AnalysisDown
     {
         private List<Grammatics> m_rule, m_terminals, m_nterminals;
         private Grammatics eps, id, constNT;
+        private List<Grammatics> m_element_str = new List<Grammatics>();
 
         public AnalysisDownNew (List<Grammatics> rule, List<Grammatics> terminals, List<Grammatics> nterminals)
         {
@@ -35,7 +36,8 @@ namespace AnalysisDown
         }
         public void AddElement(Grammatics element)
         {
-           
+            
+
         }
         public void Search_Terminals(string [] str, int index)
         {
