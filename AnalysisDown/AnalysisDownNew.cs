@@ -10,11 +10,13 @@ namespace AnalysisDown
     {
         private List<Grammatics> m_rule, m_terminals, m_nterminals;
         private Grammatics eps, id, constNT;
+        private int[,] m_tabel;
         private List<Grammatics> m_element_str = new List<Grammatics>();
         private List<Grammatics> m_eps_rules = new List<Grammatics>();
-        public AnalysisDownNew (List<Grammatics> rule, List<Grammatics> terminals, List<Grammatics> nterminals)
+        public AnalysisDownNew (List<Grammatics> rule, int [,] tabel, List<Grammatics> terminals, List<Grammatics> nterminals)
         {
             m_rule = rule;
+            m_tabel = tabel;
             m_terminals = terminals;
             m_nterminals = nterminals;
         }
@@ -25,6 +27,7 @@ namespace AnalysisDown
         {
             grammar_str += " " + eps.m_name;
             string[] str = grammar_str.Split(' ');
+            bool search_id = false;
 
             for (int k = 0; k < str.Length; k++)
             {
@@ -73,6 +76,24 @@ namespace AnalysisDown
         {
             return "0123456789ABCDF".Contains(str);
         }
+       
+        public void Algoritm_Down()
+        {
+            string str_nterminals = m_nterminals[0].m_name + " " + eps.m_name;
+            foreach (var nterminal in m_nterminals)
+            {
+                if (str_nterminals == nterminal.m_name)
+                {
+
+                }
+            }
+            for (int i = 0; i < arrNTT.Count; i++)
+            {
+                if (Convert.ToString(M[0]) == arrNTT[i].m_name)
+                    jTr = arrNTT[i].number;
+            }
+        }
+
         public void Search_Terminals(string [] str, int index)
         {
             foreach (var terminal in m_terminals)
