@@ -8,11 +8,11 @@ namespace AnalysisDown
 {
     class AnalysisDownExp
     {
-        public string str = "";
+        public string str = ""; // не нужна
         public int[,] arrZDown;
         List<Grammatics> arrNT, arrNTT, arrPr;
         public Grammatics[] arrStr = new Grammatics[1000];
-        public string[] arrM = new string[1000];
+        public string[] arrM = new string[1000]; // нужно сделать локальной
         public Grammatics elemUStr = new Grammatics();
         public int ind = 0;
         public Grammatics eps, id, constNT;
@@ -33,7 +33,7 @@ namespace AnalysisDown
                 {
                     if (arrM[i] == arrNT[j].m_name && check_number != false)
                     {
-                        ElementUpStr(arrNT[j]);
+                        ElementUpStr(arrNT[j]); // Поиск терминалов в строке
                         flag = true;
                     }
                 }
@@ -49,7 +49,7 @@ namespace AnalysisDown
                     {
                         if (arrM[i].Length <= 8 && arrM[i].Length > 0)
                         {
-                            ElementUpStr(id);
+                            ElementUpStr(id); // поиск id
                             flag = true;
                         }
                         else
@@ -130,13 +130,13 @@ namespace AnalysisDown
         {
             return "0123456789".Contains(str1);
         }
-        public void algoritmUp(string richTextBox1)
+        public void algoritmUp(string richTextBox1)////
         {
             string M = "S $", pr = "";
             int IarrStr = 0, jTr = 0, f = 0;
             printDown(arrStr, M, pr, richTextBox1);
             int iTr = arrStr[IarrStr].number;
-
+            // Проверят наличие правила S зачем нужно, не понятно))
             for (int i = 0; i < arrNTT.Count; i++)
             {
                 if (Convert.ToString(M[0]) == arrNTT[i].m_name)
@@ -144,7 +144,7 @@ namespace AnalysisDown
             }
             while (arrZDown[jTr - 1, iTr - 1] != 30)
             {
-                f = arrZDown[jTr - 1, iTr - 1];
+                f = arrZDown[jTr - 1, iTr - 1]; // определение номера правила
                 if (f == 29)
                 {
                     M = delFirstString(M);

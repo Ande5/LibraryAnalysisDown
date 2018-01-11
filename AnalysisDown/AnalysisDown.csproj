@@ -39,6 +39,7 @@
   <ItemGroup>
     <Compile Include="AnalysisDown.cs" />
     <Compile Include="AnalysisDownExp.cs" />
+    <Compile Include="AnalysisDownNew.cs" />
     <Compile Include="AnalysisEvent.cs" />
     <Compile Include="Grammatics.cs" />
     <Compile Include="InitializeAnalysisDown.cs" />
