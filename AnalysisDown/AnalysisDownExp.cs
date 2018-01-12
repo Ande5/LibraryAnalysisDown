@@ -11,7 +11,6 @@ namespace AnalysisDown
         public string str = ""; // не нужна
         public int[,] arrZDown;
         List<Grammatics> arrNT, arrNTT, arrPr;
-       // public Grammatics[] arrStr = new Grammatics[1000];
         List<Grammatics> arrStr = new List<Grammatics>();
         public string[] arrM = new string[1000]; // нужно сделать локальной
       //  public Grammatics elemUStr = new Grammatics(); // не нужно
@@ -38,11 +37,6 @@ namespace AnalysisDown
                         flag = true;
                     }
                 }
-                //if (arrM[i] == "$" && check_number != false)
-                //{
-                //    ElementUpStr(eps);
-                //    flag = true;
-                //}
                 if (flag == false && check_number != false)
                 {
                     check_number = CheckNumber(arrM[i]);
@@ -75,59 +69,8 @@ namespace AnalysisDown
         }
         public void ElementUpStr(Grammatics element)
         {
-           // elemUStr.m_name = element.m_name;
-           // elemUStr.number = element.number;
-           // arrStr[ind] = element;
             arrStr.Add(element);
-          //  ind = (element.m_name == eps.m_name) ? ind : ind += 1;
         }
-        ////Метод для работы с числами для нисходящего разбора
-        //public bool IsNumberDown(string str2, string dopstr)
-        //{
-        //    int pr2 = 0;
-        //    for (int j = 0; j < str2.Length; j++)
-        //    {
-        //        for (int i = 0; i < dopstr.Length; i++)
-        //        {
-        //            if (str2[j] == dopstr[i]) pr2++;
-        //        }
-        //    }
-        //    return (pr2 == 0) ? false : true;
-        //}
-        ////Метод для работы с числами для нисходящего разбора
-        //public int IsThisNumberDown(string str1)
-        //{
-        //    int ptp = 0;
-        //    if (str1 == "true" || str1 == "false")
-        //    {
-        //        ElementUpStr(constNT);
-        //        return 1;
-        //    }
-        //    else
-        //        if (IsNumberDown(str1, "0123456789") == true)
-        //        {
-        //            for (int i = 0; i < str1.Length; i++)
-        //            {
-        //                if (IsNumberDown(Convert.ToString(str1[i]), "0123456789.Ee-") == true)
-        //                    ptp += 1;
-        //            }
-        //            if (ptp == str1.Length)
-        //            {
-        //                ElementUpStr(constNT);
-        //                return 1;
-        //            }
-        //            else
-        //            {
-        //                AnalysisEvent.PrintMessage("Введите вещественное" + '\n' + " число с порядком!" + '\r' + "Ошибка --> " + str1);
-        //                str = "";
-        //                return -1;
-        //            }
-        //        }
-        //        else
-        //        {
-        //            return 0;
-        //        }
-        //}
         public bool CheckNumber(string str1)
         {
             return "0123456789".Contains(str1);
@@ -306,7 +249,6 @@ namespace AnalysisDown
         }
         public void LoadingAnalysis(int[,] tabel, List<Grammatics> Grammatics, List<Grammatics> Terminals, List<Grammatics> NTerminals)
         {
-            //Array.Clear(arrStr, 0, arrStr.Length);
             arrStr.Clear();
             Array.Clear(arrM, 0, arrM.Length);
             probels.Clear();
