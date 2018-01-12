@@ -286,8 +286,7 @@ namespace AnalysisDown
                 {
                     case "$":
                         {
-                            eps.m_name = gr.m_name;
-                            eps.number = gr.number;
+                            eps = gr;
                             break;
                         }
                     case "id":

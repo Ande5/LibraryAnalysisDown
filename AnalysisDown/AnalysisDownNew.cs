@@ -120,20 +120,17 @@ namespace AnalysisDown
                 {
                     case "$":
                         {
-                            eps.m_name = terminal.m_name;
-                            eps.number = terminal.number;
+                            eps = terminal;
                             break;
                         }
                     case "id":
                         {
-                            id.m_name = terminal.m_name;
-                            id.number = terminal.number;
+                            id = terminal;
                             break;
                         }
                     case "const":
                         {
-                            constNT.m_name = terminal.m_name;
-                            constNT.number = terminal.number;
+                            constNT = terminal;
                             break;
                         }
                 }

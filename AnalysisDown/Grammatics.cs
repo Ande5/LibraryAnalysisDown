@@ -9,7 +9,6 @@ namespace AnalysisDown
     struct Grammatics
     {
         public string m_name;
-       // public string m_temp;
         public int number;
 
         public Grammatics(int number, string name)
