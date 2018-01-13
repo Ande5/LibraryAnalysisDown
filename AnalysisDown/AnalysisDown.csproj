@@ -40,6 +40,7 @@
     <Compile Include="AnalysisDown.cs" />
     <Compile Include="AnalysisDownExp.cs" />
     <Compile Include="AnalysisDownNew.cs" />
+    <Compile Include="AnalysisDownNew2.cs" />
     <Compile Include="AnalysisEvent.cs" />
     <Compile Include="Grammatics.cs" />
     <Compile Include="InitializeAnalysisDown.cs" />

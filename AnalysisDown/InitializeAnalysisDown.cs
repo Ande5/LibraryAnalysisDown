@@ -118,25 +118,25 @@ namespace AnalysisDown
             new Grammatics(27,"$"),
         };
 
-        public void LoadingTabel()
-        {
-            analysis_down.LoadingTabel = m_tabel;
-        }
+        //public void LoadingTabel()
+        //{
+        //    analysis_down.LoadingTabel = m_tabel;
+        //}
 
-        public void LoadingGrammatics()
-        {
-            analysis_down.LoadingGrammatics = Rule;
-        }
-        public void LoadingTerminals()
-        {
-            analysis_down.LoadingTerminals = Terminals;
-        }
+        //public void LoadingGrammatics()
+        //{
+        //    analysis_down.LoadingGrammatics = Rule;
+        //}
+        //public void LoadingTerminals()
+        //{
+        //    analysis_down.LoadingTerminals = Terminals;
+        //}
         public void Initialize(string richTextBox1, string text)
         {
             analysis_down.LoadingAnalysis(m_tabel, Rule, Terminals, NTerminals);
-            analysis_down.AnalysisStart(richTextBox1, text);
+            analysis_down.AnalysisStart(text);
         }
 
-        AnalysisDownExp analysis_down = new AnalysisDownExp();
+        AnalysisDownNew2 analysis_down = new AnalysisDownNew2();
     }
 }

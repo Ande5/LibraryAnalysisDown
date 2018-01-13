@@ -19,6 +19,7 @@ namespace LibraryAnalysisDown
             AnalysisEvent.PrintCompileInfo = new AnalysisEvent.PrintResult(AnalysisOnPrintCompileInfo);
             AnalysisEvent.PrintMessage = new AnalysisEvent.PrintResult(AnalysisOnPrintMessage);
             textBox1.Text = "else := id [ id ] const then := id [ id ] const if < id id else := id [ id ] const then := id [ id ] const if id := id [ id ] const";
+            textBox1.Text = "else := k [ 10 ] const then := id [ id ] const if < id id else := id [ id ] const then := id [ id ] const if id := id [ id ] const";
         }
         // dev
         InitializeAnalysisDown analysis = new InitializeAnalysisDown();

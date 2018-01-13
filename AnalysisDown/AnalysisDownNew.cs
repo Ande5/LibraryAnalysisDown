@@ -27,12 +27,15 @@ namespace AnalysisDown
         {
             grammar_str += " " + eps.m_name;
             string[] str = grammar_str.Split(' ');
-            bool search_id = false;
+            bool flag = false;
 
             for (int k = 0; k < str.Length; k++)
             {
-                Search_Terminals(str, k);
-                Search_ID(str[k]);
+                Search_Terminals(str, k, ref flag);
+                if (flag == false)
+                {
+                    Search_ID(str[k]);
+                }
             }
     
    
@@ -90,13 +93,14 @@ namespace AnalysisDown
            
         }
 
-        public void Search_Terminals(string [] str, int index)
+        public void Search_Terminals(string [] str, int index, ref bool flag)
         {
             foreach (var terminal in m_terminals)
             {
                 if (terminal.m_name == str[index])
                 {
                     m_element_str.Add(terminal);
+                    flag = true;
                 }
             } 
         }

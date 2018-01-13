@@ -95,12 +95,12 @@ namespace AnalysisDown
         public int IsThisNumberDown(string str1)
         {
             int ptp = 0;
-            if (str1 == "true" || str1 == "false")
-            {
-                ElementUpStr(constNT);
-                return 1;
-            }
-            else
+            //if (str1 == "true" || str1 == "false")
+            //{
+            //    ElementUpStr(constNT);
+            //    return 1;
+            //}
+            //else
                 if (IsNumberDown(str1, "0123456789") == true)
                 {
                     for (int i = 0; i < str1.Length; i++)

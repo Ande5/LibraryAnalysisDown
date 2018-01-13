@@ -17,13 +17,62 @@ namespace AnalysisDown
        // public int ind = 0; не нужно
         public Grammatics eps, id, constNT;
         public List<Grammatics> probels = new List<Grammatics>();
+        public enum NumberCheck { True, False, Errors};
         //Метод нисходящего разбора
+        //public void Down(string richTextBox1, string text)
+        //{
+        //    // ind = 0;
+        //    str += text + " $";
+        //    int l = 0;
+        //    bool check_number = true;
+        //    bool flag = false;
+        //    arrM = str.Split(' ');
+
+        //    for (int i = 0; i < arrM.Length; i++)
+        //    {
+        //        for (int j = 0; j < arrNT.Count; j++)
+        //        {
+        //            if (arrM[i] == arrNT[j].m_name)
+        //            {
+        //                ElementUpStr(arrNT[j]); // Поиск терминалов в строке
+        //                flag = true;
+        //            }
+        //        }
+        //        if (flag == false)
+        //        {
+        //            check_number = CheckNumber(arrM[i]);
+        //            if (check_number == true)
+        //            {
+        //                if (arrM[i].Length <= 8 && arrM[i].Length > 0)
+        //                {
+        //                    ElementUpStr(id); // поиск id
+        //                    flag = true;
+        //                }
+        //                else
+        //                {
+        //                    if (arrM[i].Length > 8)
+        //                    {
+        //                        check_number = false;
+        //                        AnalysisEvent.PrintMessage("Длина идентификатора должна быть меньше 8 символов!" + '\n' + "Ошибка --> " + arrM[i]);
+        //                    }
+        //                    if (arrM[i].Length == 0)
+        //                    {
+        //                        check_number = false;
+        //                        AnalysisEvent.PrintMessage("Длина идентификатора должна быть больше 0 символов!" + '\n' + "Слово № " + (i + 1).ToString() + " является пробелом.");
+        //                        str = null;
+        //                    }
+        //                }
+        //            }
+        //        }
+        //        flag = false;
+        //    }
+        //    if (check_number != false) algoritmUp(richTextBox1);
+        //}
         public void Down(string richTextBox1, string text)
         {
-           // ind = 0;
+            //ind = 0;
             str += text + " $";
-            int l = 0;
-            bool check_number = true;
+            NumberCheck l = NumberCheck.False;
             bool flag = false;
             arrM = str.Split(' ');
 
@@ -31,32 +80,33 @@ namespace AnalysisDown
             {
                 for (int j = 0; j < arrNT.Count; j++)
                 {
-                    if (arrM[i] == arrNT[j].m_name && check_number != false)
+                    if (arrM[i] == arrNT[j].m_name && l != NumberCheck.Errors)
                     {
-                        ElementUpStr(arrNT[j]); // Поиск терминалов в строке
+                        ElementUpStr(arrNT[j]);
                         flag = true;
                     }
                 }
-                if (flag == false && check_number != false)
+              
+                if (flag == false && l != NumberCheck.Errors)
                 {
-                    check_number = CheckNumber(arrM[i]);
-                    if (check_number == true)
+                    l = IsThisNumberDown(arrM[i]);
+                    if (l == NumberCheck.False)
                     {
                         if (arrM[i].Length <= 8 && arrM[i].Length > 0)
                         {
-                            ElementUpStr(id); // поиск id
+                            ElementUpStr(id);
                             flag = true;
                         }
                         else
                         {
                             if (arrM[i].Length > 8)
                             {
-                                check_number = false;
+                                l = NumberCheck.Errors;
                                 AnalysisEvent.PrintMessage("Длина идентификатора должна быть меньше 8 символов!" + '\n' + "Ошибка --> " + arrM[i]);
                             }
                             if (arrM[i].Length == 0)
                             {
-                                check_number = false;
+                                l = NumberCheck.Errors;
                                 AnalysisEvent.PrintMessage("Длина идентификатора должна быть больше 0 символов!" + '\n' + "Слово № " + (i + 1).ToString() + " является пробелом.");
                                 str = null;
                             }
@@ -65,11 +115,58 @@ namespace AnalysisDown
                 }
                 flag = false;
             }
-            if (check_number != false) algoritmUp(richTextBox1);
+            if (l != NumberCheck.Errors) algoritmUp(richTextBox1);
         }
         public void ElementUpStr(Grammatics element)
         {
             arrStr.Add(element);
+        }
+        public bool IsNumberDown(string str2, string dopstr)
+        {
+            int pr2 = 0;
+            for (int j = 0; j < str2.Length; j++)
+            {
+                for (int i = 0; i < dopstr.Length; i++)
+                {
+                    if (str2[j] == dopstr[i]) pr2++;
+                }
+            }
+            return (pr2 == 0) ? false : true;
+        }
+        //Метод для работы с числами для нисходящего разбора
+        public NumberCheck IsThisNumberDown(string str1)
+        {
+           // NumberCheck s = NumberCheck.False;
+            int ptp = 0;
+                if (IsNumberDown(str1, "0123456789") == true)
+                {
+                    for (int i = 0; i < str1.Length; i++)
+                    {
+                        if (IsNumberDown(Convert.ToString(str1[i]), "0123456789.Ee-") == true)
+                            ptp += 1;
+                    }
+                    if (ptp == str1.Length)
+                    {
+                        ElementUpStr(constNT);
+                        //return 1;
+                        //s = NumberCheck.True;
+                        return NumberCheck.True;
+                    }
+                    else
+                    {
+                        AnalysisEvent.PrintMessage("Введите вещественное" + '\n' + " число с порядком!" + '\r' + "Ошибка --> " + str1);
+                        str = "";
+                        //return -1;
+                       // s = NumberCheck.Errors;
+                        return NumberCheck.Errors;
+                    }
+                }
+                else
+                {
+                    //return 0;
+                  //  s = NumberCheck.False;
+                    return NumberCheck.False;
+                }
         }
         public bool CheckNumber(string str1)
         {
@@ -77,8 +174,12 @@ namespace AnalysisDown
         }
         public void algoritmUp(string richTextBox1)////
         {
-            string M = "S $", pr = "";
-            int IarrStr = 0, jTr = 0, f = 0;
+            string M = "S $", 
+                   pr = "";
+            int IarrStr = 0,
+                jTr = 0, 
+                f = 0;
+
             printDown(arrStr, M, pr, richTextBox1);
             int iTr = arrStr[IarrStr].number;
             // Проверят наличие правила S зачем нужно, не понятно))
