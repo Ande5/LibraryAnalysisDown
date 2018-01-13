@@ -78,39 +78,42 @@ namespace AnalysisDown
                 AnalysisEvent.PrintMessage("Длина идентификатора должна быть больше 0 символов!\n");
             }
         }
-        public bool IsNumberDown(string str2, string dopstr)
-        {
-            int pr2 = 0;
-            for (int j = 0; j < str2.Length; j++)
-            {
-                for (int i = 0; i < dopstr.Length; i++)
-                {
-                    if (str2[j] == dopstr[i]) pr2++;
-                }
-            }
-            return (pr2 == 0) ? false : true;
-        }
         //Метод для работы с числами для нисходящего разбора
+        public NumberCheck IsThisNumberDown1(string str1)
+        {
+            bool error = true;
+            if (CheckNumber(str1, "0123456789ABCDF.Ee-"))
+            {
+                //if (CheckNumber(str1, ".Ee-"))
+                //    {
+                for (int k = 0; k < str1.Length; k++ )
+                {
+                    if (Convert.ToString(str1[k]) == "E")
+                    {
+                        m_element_str.Add(constNT);
+                        return NumberCheck.True;
+                        error = false;
+                    }
+                   
+                }
+                 if (error)
+                    {
+                        AnalysisEvent.PrintMessage("Введите вещественное" + '\n' + " число с порядком!" + '\r' + "Ошибка --> " + str1);
+                        return NumberCheck.Error;
+                    } 
+            }
+            else
+            {
+                return NumberCheck.False;
+            }
+            return NumberCheck.Error;
+        }
         public NumberCheck IsThisNumberDown(string str1)
         {
-            int ptp = 0;
-            if (IsNumberDown(str1, "0123456789") == true)
+            if (CheckNumber(str1, "0123456789ABCDF.Ee-"))
             {
-                for (int i = 0; i < str1.Length; i++)
-                {
-                    if (IsNumberDown(Convert.ToString(str1[i]), "0123456789.Ee-") == true)
-                        ptp += 1;
-                }
-                if (ptp == str1.Length)
-                {
-                    m_element_str.Add(constNT);
-                    return NumberCheck.True;
-                }
-                else
-                {
-                    AnalysisEvent.PrintMessage("Введите вещественное" + '\n' + " число с порядком!" + '\r' + "Ошибка --> " + str1);
-                    return NumberCheck.Error;
-                }
+                m_element_str.Add(constNT);
+                return NumberCheck.True;   
             }
             else
             {
@@ -118,15 +121,20 @@ namespace AnalysisDown
             }
         }
 
-        public bool CheckNumber(string str)
+        public bool CheckNumber(string str, string symbol)
         {
-            return "0123456789ABCDF".Contains(str);
+            bool number = false;
+            for (int k = 0; k < str.Length; k++ )
+            {
+               number = symbol.Contains(Convert.ToString(str[k]));
+               if (!number) { return false; }
+            }
+            return number;
         }
-
         public void Algoritm_Down()
         {
             string str_nterminals = m_nterminals[0].m_name + " " + eps.m_name;
-            int index = 0, index_i = 0, index_j = 0;
+            int index_i = 0, index_j = 0;
             index_i = m_element_str[0].number;
             index_j = Search_Index_J(Convert.ToString(str_nterminals[0]));
             int number_rule = 0;
@@ -136,8 +144,9 @@ namespace AnalysisDown
                 number_rule = m_tabel[index_j - 1, index_i - 1]; // определение номера правила
                 if (number_rule == 29)
                 {
-                    str_nterminals = delFirstString(str_nterminals);
-                    m_element_str = delFirstDown(m_element_str);
+                    int rule = str_nterminals.IndexOf(" ");
+                    str_nterminals = str_nterminals.Remove(0, rule + 1);
+                    m_element_str.RemoveAt(0);
                     printDown(m_element_str, str_nterminals, pr);
                 }
                 else
@@ -150,6 +159,7 @@ namespace AnalysisDown
                             str_nterminals_array[0] = rule.m_name;
                             str_nterminals = "";
                             ScaningEPSRule(str_nterminals_array, ref str_nterminals, rule.number);
+                            //str_nterminals.Insert(0, rule.m_name);
                             pr = pr + " " + Convert.ToString(rule.number);
                             printDown(m_element_str, str_nterminals, pr);
                         }
@@ -177,28 +187,6 @@ namespace AnalysisDown
                 }
             }
             return 0;
-        }
-        public List<Grammatics> delFirstDown(List<Grammatics> down)
-        {
-            List<Grammatics> newd = new List<Grammatics>();
-            Grammatics elemDel = new Grammatics();
-            for (int i = 1; i < down.Count; i++)
-            {
-                elemDel.number = down[i].number;
-                elemDel.m_name = down[i].m_name;
-                newd.Add(elemDel);
-            }
-            return newd;
-        }
-        public string delFirstString(string M)
-        {
-            string[] lastM = M.Split(' ');
-            string newM = "";
-            for (int i = 1; i < lastM.Length; i++)
-            {
-                newM += lastM[i] + " ";
-            }
-            return newM;
         }
         public void printDown(List<Grammatics> arrR, string M, string pr)
         {
