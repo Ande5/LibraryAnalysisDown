@@ -125,14 +125,10 @@ R -> < A
 
         private InitializeAnalysisDown1() { }
 
-        public InitializeAnalysisDown1(string rich, string text)
+        public InitializeAnalysisDown1(string text)
         {
             m_analysis_down = new AnalysisDownNew2(Rule, m_tabel, Terminals, NTerminals);
             m_analysis_down.Run(text);
-            
-            //m_analysis_down.LoadingAnalysis(m_tabel,Rule, Terminals, NTerminals);
-            //m_analysis_down.AnalysisStart(rich, text);
-           
         }
 
         private AnalysisDownNew2 m_analysis_down;
