@@ -22,7 +22,7 @@ namespace LibraryAnalysisDown
             textBox1.Text = "else := k [ 10 ] const then := id [ id ] const if < id id else := id [ id ] const then := id [ id ] const if id := id [ id ] const";
         }
         // dev
-        InitializeAnalysisDown analysis = new InitializeAnalysisDown();
+        InitializeAnalysisDown1 analysis;
         private void AnalysisOnPrintMessage(string text)
         {
             MessageBox.Show(text);
@@ -36,7 +36,8 @@ namespace LibraryAnalysisDown
         private void button1_Click(object sender, EventArgs e)
         {
             richTextBox1.Clear();
-            analysis.Initialize(richTextBox1.Text, textBox1.Text);
+            analysis = new InitializeAnalysisDown1(richTextBox1.Text, textBox1.Text);
+           // analysis.Initialize(richTextBox1.Text, textBox1.Text);
         }
     }
 }

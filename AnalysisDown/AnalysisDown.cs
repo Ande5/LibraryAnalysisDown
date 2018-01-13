@@ -237,7 +237,7 @@ namespace AnalysisDown
             // Для eps правил можно задать свой символ
             for (int k = 0; k < arrPr.Count; k++)
             {
-                if (arrPr[k].m_name == "  ")
+                if (arrPr[k].m_name == " ")
                 {
                     probel.m_name = arrPr[k].m_name;
                     probel.number = arrPr[k].number;

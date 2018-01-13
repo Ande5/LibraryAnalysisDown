@@ -131,12 +131,18 @@ namespace AnalysisDown
         //{
         //    analysis_down.LoadingTerminals = Terminals;
         //}
-        public void Initialize(string richTextBox1, string text)
-        {
-            analysis_down.LoadingAnalysis(m_tabel, Rule, Terminals, NTerminals);
-            analysis_down.AnalysisStart(text);
-        }
+        //public void Initialize(string richTextBox1, string text)
+        //{
+        //    analysis_down.LoadingAnalysis(m_tabel, Rule, Terminals, NTerminals);
+        //    analysis_down.AnalysisStart(text);
+        //}
+        private InitializeAnalysisDown() { }
 
-        AnalysisDownNew2 analysis_down = new AnalysisDownNew2();
+        public InitializeAnalysisDown(string text)
+        {
+            m_analysis_down = new AnalysisDownNew2(Rule, m_tabel,Terminals, NTerminals);
+            m_analysis_down.Run(text);
+        }
+        AnalysisDownNew2 m_analysis_down;
     }
 }
