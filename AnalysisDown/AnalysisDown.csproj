@@ -44,7 +44,6 @@
     <Compile Include="AnalysisEvent.cs" />
     <Compile Include="Grammatics.cs" />
     <Compile Include="InitializeAnalysisDown.cs" />
-    <Compile Include="InitializeAnalysisDown1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
