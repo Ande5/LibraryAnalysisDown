@@ -117,25 +117,6 @@ namespace AnalysisDown
             new Grammatics(26,"|"),
             new Grammatics(27,"$"),
         };
-
-        //public void LoadingTabel()
-        //{
-        //    analysis_down.LoadingTabel = m_tabel;
-        //}
-
-        //public void LoadingGrammatics()
-        //{
-        //    analysis_down.LoadingGrammatics = Rule;
-        //}
-        //public void LoadingTerminals()
-        //{
-        //    analysis_down.LoadingTerminals = Terminals;
-        //}
-        //public void Initialize(string richTextBox1, string text)
-        //{
-        //    analysis_down.LoadingAnalysis(m_tabel, Rule, Terminals, NTerminals);
-        //    analysis_down.AnalysisStart(text);
-        //}
         private InitializeAnalysisDown() { }
 
         public InitializeAnalysisDown(string text)

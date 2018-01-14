@@ -77,36 +77,6 @@ namespace AnalysisDown
                 AnalysisEvent.PrintMessage("Длина идентификатора должна быть больше 0 символов!\n");
             }
         }
-        //Метод для работы с числами для нисходящего разбора
-        public NumberCheck IsThisNumberDown1(string str1)
-        {
-            bool error = true;
-            if (CheckNumber(str1, "0123456789ABCDF.Ee-"))
-            {
-                //if (CheckNumber(str1, ".Ee-"))
-                //    {
-                for (int k = 0; k < str1.Length; k++ )
-                {
-                    if (Convert.ToString(str1[k]) == "E")
-                    {
-                        m_element_str.Add(constNT);
-                        return NumberCheck.True;
-                        error = false;
-                    }
-                   
-                }
-                 if (error)
-                    {
-                        AnalysisEvent.PrintMessage("Введите вещественное" + '\n' + " число с порядком!" + '\r' + "Ошибка --> " + str1);
-                        return NumberCheck.Error;
-                    } 
-            }
-            else
-            {
-                return NumberCheck.False;
-            }
-            return NumberCheck.Error;
-        }
         public NumberCheck IsThisNumberDown(string str1)
         {
             if (CheckNumber(str1, "0123456789ABCDF.Ee-"))
@@ -158,7 +128,6 @@ namespace AnalysisDown
                             str_nterminals_array[0] = rule.m_name;
                             str_nterminals = "";
                             ScaningEPSRule(str_nterminals_array, ref str_nterminals, rule.number);
-                            //str_nterminals.Insert(0, rule.m_name);
                             pr += " " + Convert.ToString(rule.number);
                             printDown(m_element_str, str_nterminals, pr);
                         }
@@ -228,8 +197,6 @@ namespace AnalysisDown
         }
         public void AddProbelM(string[] laaM, ref string M)
         {
-            //List<string> dinosaurs = new List<string>(laaM);
-            //M = dinosaurs.GetRange(1, dinosaurs.Count-1).ToArray() + " ";
             for (int k = 1; k < laaM.Length; k++)
             {
                 M += laaM[k] + " ";

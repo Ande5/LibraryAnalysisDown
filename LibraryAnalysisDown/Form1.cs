@@ -13,15 +13,15 @@ namespace LibraryAnalysisDown
 {
     public partial class Form1 : Form
     {
+        //Release
         public Form1()
         {
             InitializeComponent();
             AnalysisEvent.PrintCompileInfo = new AnalysisEvent.PrintResult(AnalysisOnPrintCompileInfo);
             AnalysisEvent.PrintMessage = new AnalysisEvent.PrintResult(AnalysisOnPrintMessage);
             textBox1.Text = "else := id [ id ] const then := id [ id ] const if < id id else := id [ id ] const then := id [ id ] const if id := id [ id ] const";
-            textBox1.Text = "else := k [ 10 ] const then := id [ id ] const if < id id else := id [ id ] const then := id [ id ] const if id := id [ id ] const";
+            textBox1.Text = "else := k [ 0AFF ] const then := x [ FFF ] const if < id id else := id [ id ] const then := id [ id ] const if id := id [ id ] const";
         }
-        // dev
         InitializeAnalysisDown analysis;
         private void AnalysisOnPrintMessage(string text)
         {
@@ -37,7 +37,6 @@ namespace LibraryAnalysisDown
         {
             richTextBox1.Clear();
             analysis = new InitializeAnalysisDown(textBox1.Text);
-           // analysis.Initialize(richTextBox1.Text, textBox1.Text);
         }
     }
 }
