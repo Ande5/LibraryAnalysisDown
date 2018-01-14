@@ -40,7 +40,6 @@ namespace AnalysisDown
                     Search_ID(str[k], ref flag, ref check_number);
                 }
                 flag = false;
-
             }
             if (check_number != NumberCheck.Error)
             {
@@ -160,7 +159,7 @@ namespace AnalysisDown
                             str_nterminals = "";
                             ScaningEPSRule(str_nterminals_array, ref str_nterminals, rule.number);
                             //str_nterminals.Insert(0, rule.m_name);
-                            pr = pr + " " + Convert.ToString(rule.number);
+                            pr += " " + Convert.ToString(rule.number);
                             printDown(m_element_str, str_nterminals, pr);
                         }
                     }
@@ -229,6 +228,8 @@ namespace AnalysisDown
         }
         public void AddProbelM(string[] laaM, ref string M)
         {
+            //List<string> dinosaurs = new List<string>(laaM);
+            //M = dinosaurs.GetRange(1, dinosaurs.Count-1).ToArray() + " ";
             for (int k = 1; k < laaM.Length; k++)
             {
                 M += laaM[k] + " ";
@@ -263,7 +264,7 @@ namespace AnalysisDown
             // Для eps правил можно задать свой символ
             foreach (var rule in m_rule)
             {
-                if (rule.m_name == "  ")
+                if (rule.m_name == "eps")
                 {
                     m_eps_rules.Add(rule);
                 }

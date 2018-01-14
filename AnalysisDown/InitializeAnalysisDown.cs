@@ -41,16 +41,16 @@ namespace AnalysisDown
         List<Grammatics> Rule = new List<Grammatics>() 
         { 
           new Grammatics(1, "else Y Z"),
-          new Grammatics(2, "  "),
+          new Grammatics(2, "eps"),
           new Grammatics(3, "then Y I"),
           new Grammatics(4, "if K S"),
           new Grammatics(5, ":= id D"),
           new Grammatics(6,"A Y"),
-          new Grammatics(7,"  "),
+          new Grammatics(7,"eps"),
           new Grammatics(8,"G"),
           new Grammatics(9,"id B"),
           new Grammatics(10,"A"),
-          new Grammatics(11,"  "),
+          new Grammatics(11,"eps"),
           new Grammatics(12,"[ A C"),
           new Grammatics(13,"[ A C G"),
           new Grammatics(14,"]"),
@@ -65,7 +65,7 @@ namespace AnalysisDown
           new Grammatics(23,"- A"),
           new Grammatics(24,"< A"),
           new Grammatics(25,"| A"),
-          new Grammatics(26,"  "),
+          new Grammatics(26,"eps"),
         };
 
         List<Grammatics> Terminals = new List<Grammatics>()
