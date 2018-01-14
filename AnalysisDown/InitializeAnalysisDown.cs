@@ -121,9 +121,9 @@ namespace AnalysisDown
 
         public InitializeAnalysisDown(string text)
         {
-            m_analysis_down = new AnalysisDownNew2(Rule, m_tabel,Terminals, NTerminals);
+            m_analysis_down = new AnalysisDown(Rule, m_tabel,Terminals, NTerminals);
             m_analysis_down.Run(text);
         }
-        AnalysisDownNew2 m_analysis_down;
+        AnalysisDown m_analysis_down;
     }
 }

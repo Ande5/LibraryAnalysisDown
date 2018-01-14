@@ -6,16 +6,17 @@ using System.Threading.Tasks;
 
 namespace AnalysisDown
 {
-    class AnalysisDownNew2
+    class AnalysisDown
     {
+        // На ветке dev называется AnalysisDownNew2
         private List<Grammatics> m_rule, m_terminals, m_nterminals;
         private Grammatics eps, id, constNT;
         private int[,] m_tabel;
         private List<Grammatics> m_element_str = new List<Grammatics>();
         private List<Grammatics> m_eps_rules = new List<Grammatics>();
         public enum NumberCheck { True, False, Error };
-        public AnalysisDownNew2() { }
-        public AnalysisDownNew2(List<Grammatics> rule, int[,] tabel, List<Grammatics> terminals, List<Grammatics> nterminals)
+        public AnalysisDown() { }
+        public AnalysisDown(List<Grammatics> rule, int[,] tabel, List<Grammatics> terminals, List<Grammatics> nterminals)
         {
             m_rule = rule;
             m_tabel = tabel;

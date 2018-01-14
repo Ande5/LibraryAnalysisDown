@@ -37,7 +37,7 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AnalysisDownNew2.cs" />
+    <Compile Include="AnalysisDown.cs" />
     <Compile Include="AnalysisEvent.cs" />
     <Compile Include="Grammatics.cs" />
     <Compile Include="InitializeAnalysisDown.cs" />
