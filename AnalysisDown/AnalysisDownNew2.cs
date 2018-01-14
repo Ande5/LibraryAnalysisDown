@@ -146,7 +146,7 @@ namespace AnalysisDown
                     int rule = str_nterminals.IndexOf(" ");
                     str_nterminals = str_nterminals.Remove(0, rule + 1);
                     m_element_str.RemoveAt(0);
-                    printDown(m_element_str, str_nterminals, pr);
+                    Print_Info(m_element_str, str_nterminals, pr);
                 }
                 else
                 {
@@ -157,10 +157,10 @@ namespace AnalysisDown
                             string[] str_nterminals_array = str_nterminals.Split(' ');
                             str_nterminals_array[0] = rule.m_name;
                             str_nterminals = "";
-                            ScaningEPSRule(str_nterminals_array, ref str_nterminals, rule.number);
+                            Scaning_Eps_Rule(str_nterminals_array, ref str_nterminals, rule.number);
                             //str_nterminals.Insert(0, rule.m_name);
                             pr += " " + Convert.ToString(rule.number);
-                            printDown(m_element_str, str_nterminals, pr);
+                            Print_Info(m_element_str, str_nterminals, pr);
                         }
                     }
                 }
@@ -187,7 +187,7 @@ namespace AnalysisDown
             }
             return 0;
         }
-        public void printDown(List<Grammatics> arrR, string M, string pr)
+        public void Print_Info(List<Grammatics> arrR, string M, string pr)
         {
             string s1 = "";
             for (int i = 0; i < arrR.Count; i++)
@@ -209,7 +209,7 @@ namespace AnalysisDown
                 }
             }
         }
-        public void ScaningEPSRule(string[] laaM, ref string M, int p)
+        public void Scaning_Eps_Rule(string[] laaM, ref string M, int p)
         {
             bool flag = false;
             foreach (var eps_rule in m_eps_rules)
