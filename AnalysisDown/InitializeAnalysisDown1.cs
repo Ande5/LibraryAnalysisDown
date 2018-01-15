@@ -81,6 +81,19 @@ R -> < A
 
         private List<Grammatics> Terminals = new List<Grammatics>()
         {
+            //new Grammatics(1,"if"),
+            //new Grammatics(2,":="),
+            //new Grammatics(3,"id"),
+            //new Grammatics(4,"["),
+            //new Grammatics(5,"]"),
+            //new Grammatics(6,"const"),
+            //new Grammatics(7,"-"),
+            //new Grammatics(8,"<"),
+            //new Grammatics(9,">"),
+            //new Grammatics(10,"!"),
+            //new Grammatics(11,"="),
+            //new Grammatics(12,"sqrt"),
+            //new Grammatics(13,"$")
             new Grammatics(1,"if"),
             new Grammatics(2,":="),
             new Grammatics(3,"id"),
@@ -88,11 +101,11 @@ R -> < A
             new Grammatics(5,"]"),
             new Grammatics(6,"const"),
             new Grammatics(7,"-"),
-            new Grammatics(8,"<"),
-            new Grammatics(9,">"),
-            new Grammatics(10,"!"),
-            new Grammatics(11,"="),
-            new Grammatics(12,"sqrt"),
+            new Grammatics(8,"!"),
+            new Grammatics(9,"="),
+            new Grammatics(10,"sqrt"),
+            new Grammatics(11,"<"),
+            new Grammatics(12,">"),
             new Grammatics(13,"$")
         };
 

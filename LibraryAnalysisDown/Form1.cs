@@ -41,6 +41,7 @@ namespace LibraryAnalysisDown
             ll_parser.CheckRule_terminals();
             ll_parser.Read_ControlTable();
             analysis = new InitializeAnalysisDown(textBox1.Text,ll_parser.Tabel,ll_parser.Rules,ll_parser.Terminals, ll_parser.NTerminals);
+            //analysis = new InitializeAnalysisDown1(textBox1.Text);
         }
 
         private void butCheckRule_Click(object sender, EventArgs e)
