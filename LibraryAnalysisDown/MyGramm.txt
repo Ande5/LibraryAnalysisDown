@@ -1,0 +1,26 @@
+S -> else Y Z
+S -> eps
+Z -> then Y I
+I -> if K S
+Y -> := id D
+K -> A Y
+D -> eps
+D -> G
+G -> id B
+G -> A
+B -> eps
+B -> [ A C
+D -> [ A C G
+C -> ]
+A -> [ A F
+F -> ] G
+A -> id
+A -> const
+A -> R A
+R -> * A
+R -> & A
+R -> + A
+R -> - A
+R -> > A
+R -> | A
+Y -> eps
