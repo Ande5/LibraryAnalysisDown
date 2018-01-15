@@ -39,5 +39,12 @@ namespace LibraryAnalysisDown
             analysis = new InitializeAnalysisDown(textBox1.Text);
            // analysis.Initialize(richTextBox1.Text, textBox1.Text);
         }
+
+        private void butCheckRule_Click(object sender, EventArgs e)
+        {
+            LLParserLoader ll_parser = new LLParserLoader("mytabel.txt", "MyGramm.txt");
+            ll_parser.Read_Regulation();
+            ll_parser.CheckRule_terminals();
+        }
     }
 }

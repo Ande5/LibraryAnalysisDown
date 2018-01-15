@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AnalysisDown
 {
-    struct Grammatics
+    public struct Grammatics
     {
         public string m_name;
         public int number;
