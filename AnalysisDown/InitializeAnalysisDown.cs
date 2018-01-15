@@ -117,13 +117,25 @@ namespace AnalysisDown
             new Grammatics(26,"|"),
             new Grammatics(27,"$"),
         };
-        private InitializeAnalysisDown() { }
 
+
+        /// <summary>
+        /// Конструктор для загрузки из InitializeAnalysisDown
+        /// </summary>
+        /// <param name="text"></param>
         public InitializeAnalysisDown(string text)
         {
             m_analysis_down = new AnalysisDown(Rule, Tabel,Terminals, NTerminals);
             m_analysis_down.Run(text);
         }
+        /// <summary>
+        /// Конструктор для загрузки из файла
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="m_tabel"></param>
+        /// <param name="m_rule"></param>
+        /// <param name="m_terminals"></param>
+        /// <param name="m_nterminals"></param>
         public InitializeAnalysisDown(string text, int [,] m_tabel, List<Grammatics> m_rule, List<Grammatics> m_terminals, List<Grammatics> m_nterminals)
         {
             m_analysis_down = new AnalysisDown(m_rule, m_tabel, m_terminals, m_nterminals);

@@ -48,7 +48,12 @@ namespace AnalysisDown
             }
             Array.Clear(str, 0, str.Length);
         }
-
+        /// <summary>
+        /// Определение являеться ли переменная id
+        /// </summary>
+        /// <param name="number"></param>
+        /// <param name="flag"></param>
+        /// <param name="check_number"></param>
         public void Search_ID(string number, ref bool flag, ref NumberCheck check_number)
         {
             if (IsThisNumberDown(number) == NumberCheck.False)
@@ -64,7 +69,11 @@ namespace AnalysisDown
                 }
             }
         }
-
+        /// <summary>
+        /// Вывод ошибок
+        /// </summary>
+        /// <param name="number"></param>
+        /// <param name="check_number"></param>
         public void Message_Errors(string number, NumberCheck check_number)
         {
             if (number.Length > 8)
@@ -78,6 +87,11 @@ namespace AnalysisDown
                 AnalysisEvent.PrintMessage("Длина идентификатора должна быть больше 0 символов!\n");
             }
         }
+        /// <summary>
+        /// Проверка числа по варианту
+        /// </summary>
+        /// <param name="str1"></param>
+        /// <returns></returns>
         public NumberCheck IsThisNumberDown(string str1)
         {
             if (CheckNumber(str1, "0123456789ABCDF.Ee-"))
@@ -115,9 +129,9 @@ namespace AnalysisDown
                 if (number_rule == 29)
                 {
                     int rule = str_nterminals.IndexOf(" ");
-                    str_nterminals = str_nterminals.Remove(0, rule + 1);
-                    m_element_str.RemoveAt(0);
-                    printDown(m_element_str, str_nterminals, pr);
+                    str_nterminals = str_nterminals.Remove(0, rule + 1); // удаление первого нетерминала
+                    m_element_str.RemoveAt(0); // удаление первого элемента из списка 
+                    Print_Info(m_element_str, str_nterminals, pr);
                 }
                 else
                 {
@@ -128,9 +142,9 @@ namespace AnalysisDown
                             string[] str_nterminals_array = str_nterminals.Split(' ');
                             str_nterminals_array[0] = rule.m_name;
                             str_nterminals = "";
-                            ScaningEPSRule(str_nterminals_array, ref str_nterminals, rule.number);
+                            Scaning_Eps_Rule(str_nterminals_array, ref str_nterminals, rule.number);
                             pr += " " + Convert.ToString(rule.number);
-                            printDown(m_element_str, str_nterminals, pr);
+                            Print_Info(m_element_str, str_nterminals, pr);
                         }
                     }
                 }
@@ -157,17 +171,24 @@ namespace AnalysisDown
             }
             return 0;
         }
-        public void printDown(List<Grammatics> arrR, string M, string pr)
+        public void Print_Info(List<Grammatics> element_str, string str_nterminals, string pr)
         {
             string s1 = "";
-            for (int i = 0; i < arrR.Count; i++)
+            foreach (var element in element_str)
             {
-                s1 += arrR[i].m_name + " ";
+                s1 += element.m_name + " ";
             }
             AnalysisEvent.PrintCompileInfo("\nСтрока:" + s1);
-            AnalysisEvent.PrintCompileInfo("Магазин:" + M);
+            AnalysisEvent.PrintCompileInfo("Магазин:" + str_nterminals);
             AnalysisEvent.PrintCompileInfo("Правила:" + pr);
         }
+        /// <summary>
+        /// Формирование списка элементов из терминалов
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="index"></param>
+        /// <param name="flag"></param>
+        /// <param name="check_number"></param>
         public void Search_Terminals(string[] str, int index, ref bool flag, NumberCheck check_number)
         {
             foreach (var terminal in m_terminals)
@@ -179,30 +200,33 @@ namespace AnalysisDown
                 }
             }
         }
-        public void ScaningEPSRule(string[] laaM, ref string M, int p)
+        public void Scaning_Eps_Rule(string[] str_nterminals_array, ref string str_nterminals, int rule_number)
         {
             bool flag = false;
             foreach (var eps_rule in m_eps_rules)
             {
-                if (p == eps_rule.number)
+                if (rule_number == eps_rule.number)
                 {
-                    AddProbelM(laaM, ref M);
+                    Add_Eps_str_nterminals(str_nterminals_array, ref str_nterminals);
                     flag = true;
                 }
             }
             if (flag == false)
             {
-                AddProbelM(laaM, ref M);
-                M = laaM[0] + " " + M;
+                Add_Eps_str_nterminals(str_nterminals_array, ref str_nterminals);
+                str_nterminals = str_nterminals_array[0] + " " + str_nterminals;
             }
         }
-        public void AddProbelM(string[] laaM, ref string M)
+        public void Add_Eps_str_nterminals(string[] str_nterminals_array, ref string str_nterminals)
         {
-            for (int k = 1; k < laaM.Length; k++)
+            for (int k = 1; k < str_nterminals_array.Length; k++)
             {
-                M += laaM[k] + " ";
+                str_nterminals += str_nterminals_array[k] + " ";
             }
         }
+        /// <summary>
+        /// Поиск терминалов {$, id, const}
+        /// </summary>
         public void Search_Terminals()
         {
             foreach (var terminal in m_terminals)
@@ -227,6 +251,9 @@ namespace AnalysisDown
                 }
             }
         }
+        /// <summary>
+        /// Поиск eps правил (записываем в массив)
+        /// </summary>
         public void Search_Rules_Eps()
         {
             // Для eps правил можно задать свой символ
