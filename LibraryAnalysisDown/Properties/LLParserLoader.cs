@@ -65,6 +65,9 @@ namespace AnalysisDown
             }
             return flag;
         }
+        /// <summary>
+        /// Парсим правило на поиск терминалов
+        /// </summary>
         public void CheckRule_terminals()
         {
             foreach(var rule in Rules)
@@ -82,20 +85,25 @@ namespace AnalysisDown
                 }
             }
             m_terminals.Add("$");
-            
-
-         
+            AddTerminals();
+            AddNTerminals();
         }
+        /// <summary>
+        /// Формирование Териминалов
+        /// </summary>
         public void AddTerminals()
         {
             for(int k=0; k<m_terminals.Count; k++)
             {
-                Terminals.Add(new Grammatics(k, m_terminals[k]));
+                Terminals.Add(new Grammatics(k+1, m_terminals[k]));
             }
         }
+        /// <summary>
+        /// Формирование грамматики с нетерминалами и терминалами
+        /// </summary>
         public void AddNTerminals()
         {
-            int index = 0;
+            int index = 1;
             for (int k=0; k< m_nterminals.Count; k++)
             {
                 NTerminals.Add(new Grammatics(index, m_nterminals[k]));
@@ -107,25 +115,17 @@ namespace AnalysisDown
                 index++;
             }
         }
+        /// <summary>
+        /// Поиск терминалов в списке
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
         public bool Search_terminals(string str)
         {
             bool flag = true;
             foreach (var terminal in m_terminals)
             {
                 if (terminal == str)
-                {
-                    flag = false;
-                }
-            }
-            return flag;
-        }
-        public bool Ser()
-        {
-            bool flag = true;
-            foreach (var nterminal in m_nterminals)
-            {
-                foreach (var terminal in m_terminals)
-                if (terminal == nterminal)
                 {
                     flag = false;
                 }
@@ -172,7 +172,7 @@ namespace AnalysisDown
             }
         }
 
-
+        
 
     }
 }
