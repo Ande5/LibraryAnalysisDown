@@ -11,10 +11,7 @@ namespace AnalysisDown
 {
     class LLParserLoader
     {
-        private string m_pathToTabel;
-        private string m_pathToRule;
-        Grammatics rule_down = new Grammatics();
-        int[,] rule_table;
+        private int[,] rule_table;
         List<Grammatics> m_Rules = new List<Grammatics>();
         List<string> m_nterminals = new List<string>();
         List<string> m_terminals = new List<string>();
@@ -22,21 +19,22 @@ namespace AnalysisDown
         List<Grammatics> m_NTerminals = new List<Grammatics>();
         public LLParserLoader(string pathToTabel, string pathToRule)
         {
-            m_pathToRule = pathToRule;
-            m_pathToTabel = pathToTabel;
+            Read_Regulation(pathToRule);
+            CheckRule_terminals();
+            Read_ControlTable(pathToTabel);
         }
         /// <summary>
         /// Загрузка управляющей таблицы
         /// </summary>
-        public void Read_Regulation()
+        public void Read_Regulation(string file_name)
         {
-            using (StreamReader read_regulation = new StreamReader(m_pathToRule))
+            Grammatics rule_down = new Grammatics();
+            using (StreamReader read_regulation = new StreamReader(file_name))
             {
                 int k = 0;
                 while (!read_regulation.EndOfStream)
                 {
                     string[] str = read_regulation.ReadLine().Split(new[] { " -> " }, StringSplitOptions.RemoveEmptyEntries);
-                    //m_nterminals.Add(str[0]);
                     if  ((Search_nterminals(str[0])))
                     {
                        m_nterminals.Add(str[0]);
@@ -136,14 +134,14 @@ namespace AnalysisDown
         /// Загрузка управялющей таблицы
         /// </summary>
         /// <returns></returns>
-        public void Read_ControlTable()
+        public void Read_ControlTable(string file_name)
         {
-            int widht = System.IO.File.ReadAllLines(m_pathToTabel).Length;
-            int length = Length_line_parser(m_pathToTabel, ',');
+            int widht = System.IO.File.ReadAllLines(file_name).Length;
+            int length = Length_line_parser(file_name, ',');
             rule_table = new int[widht + 1, length];
             int str_number = 0;
 
-            using (StreamReader read_table = new StreamReader(m_pathToTabel))
+            using (StreamReader read_table = new StreamReader(file_name))
             {
                 while (!read_table.EndOfStream)
                 {
@@ -170,7 +168,6 @@ namespace AnalysisDown
                 return str.Length;
             }
         }
-
         public List<Grammatics> Terminals
         {
             get { return m_Terminals; }
@@ -179,16 +176,13 @@ namespace AnalysisDown
         {
             get { return m_NTerminals; }
         }
-
         public List<Grammatics> Rules
         {
             get { return m_Rules; }
         }
-
         public int [,] Tabel
         {
             get { return rule_table; }
         }
-
     }
 }
