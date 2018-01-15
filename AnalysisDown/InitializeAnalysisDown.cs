@@ -8,7 +8,7 @@ namespace AnalysisDown
 {
     public class InitializeAnalysisDown
     {
-        int[,] m_tabel = {
+        int[,] tabel = {
                                      {1,28,28,28,28,28,28,28,28,28,28,28,28,28,2},
                                      {28,3,28,28,28,28,28,28,28,28,28,28,28,28,28},
                                      {28,28,4,28,28,28,28,28,28,28,28,28,28,28,28},
@@ -121,7 +121,12 @@ namespace AnalysisDown
 
         public InitializeAnalysisDown(string text)
         {
-            m_analysis_down = new AnalysisDown(Rule, m_tabel,Terminals, NTerminals);
+            m_analysis_down = new AnalysisDown(Rule, tabel,Terminals, NTerminals);
+            m_analysis_down.Run(text);
+        }
+        public InitializeAnalysisDown(string text, int [,] m_tabel, List<Grammatics> m_rule, List<Grammatics> m_terminals, List<Grammatics> m_nterminals)
+        {
+            m_analysis_down = new AnalysisDown(m_rule, m_tabel, m_terminals, m_nterminals);
             m_analysis_down.Run(text);
         }
         AnalysisDown m_analysis_down;

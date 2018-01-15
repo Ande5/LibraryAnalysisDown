@@ -13,15 +13,15 @@ namespace LibraryAnalysisDown
 {
     public partial class Form1 : Form
     {
-        //Release
         public Form1()
         {
             InitializeComponent();
             AnalysisEvent.PrintCompileInfo = new AnalysisEvent.PrintResult(AnalysisOnPrintCompileInfo);
             AnalysisEvent.PrintMessage = new AnalysisEvent.PrintResult(AnalysisOnPrintMessage);
             textBox1.Text = "else := id [ id ] const then := id [ id ] const if < id id else := id [ id ] const then := id [ id ] const if id := id [ id ] const";
-            textBox1.Text = "else := k [ 0AFF ] const then := x [ FFF ] const if < id id else := id [ id ] const then := id [ id ] const if id := id [ id ] const";
+            textBox1.Text = "else := k [ 10 ] const then := id [ id ] const if < id id else := id [ id ] const then := id [ id ] const if id := id [ id ] const";
         }
+        // dev
         InitializeAnalysisDown analysis;
         private void AnalysisOnPrintMessage(string text)
         {
@@ -36,7 +36,16 @@ namespace LibraryAnalysisDown
         private void button1_Click(object sender, EventArgs e)
         {
             richTextBox1.Clear();
-            analysis = new InitializeAnalysisDown(textBox1.Text);
+            LLParserLoader ll_parser = new LLParserLoader("MyTabel.txt", "MyGramm.txt");
+            ll_parser.Read_Regulation();
+            ll_parser.CheckRule_terminals();
+            ll_parser.Read_ControlTable();
+            analysis = new InitializeAnalysisDown(textBox1.Text,ll_parser.Tabel,ll_parser.Rules,ll_parser.Terminals, ll_parser.NTerminals);
+        }
+
+        private void butCheckRule_Click(object sender, EventArgs e)
+        {
+           
         }
     }
 }
