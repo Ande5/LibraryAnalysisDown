@@ -15,11 +15,11 @@ namespace AnalysisDown
         private string m_pathToRule;
         Grammatics rule_down = new Grammatics();
         int[,] rule_table;
-        List<Grammatics> Rules = new List<Grammatics>();
+        List<Grammatics> m_Rules = new List<Grammatics>();
         List<string> m_nterminals = new List<string>();
         List<string> m_terminals = new List<string>();
-        List<Grammatics> Terminals = new List<Grammatics>();
-        List<Grammatics> NTerminals = new List<Grammatics>();
+        List<Grammatics> m_Terminals = new List<Grammatics>();
+        List<Grammatics> m_NTerminals = new List<Grammatics>();
         public LLParserLoader(string pathToTabel, string pathToRule)
         {
             m_pathToRule = pathToRule;
@@ -43,7 +43,7 @@ namespace AnalysisDown
                     }
                     rule_down.m_name = str[1];
                     rule_down.number = k + 1;
-                    Rules.Add(rule_down);
+                    m_Rules.Add(rule_down);
                     k++;
                 }
             }
@@ -70,7 +70,7 @@ namespace AnalysisDown
         /// </summary>
         public void CheckRule_terminals()
         {
-            foreach(var rule in Rules)
+            foreach(var rule in m_Rules)
             {
                 string[] rule_pars = rule.m_name.Split(' ');
                 for(int k=0; k< rule_pars.Length; k++)
@@ -95,7 +95,7 @@ namespace AnalysisDown
         {
             for(int k=0; k<m_terminals.Count; k++)
             {
-                Terminals.Add(new Grammatics(k+1, m_terminals[k]));
+                m_Terminals.Add(new Grammatics(k+1, m_terminals[k]));
             }
         }
         /// <summary>
@@ -106,12 +106,12 @@ namespace AnalysisDown
             int index = 1;
             for (int k=0; k< m_nterminals.Count; k++)
             {
-                NTerminals.Add(new Grammatics(index, m_nterminals[k]));
+                m_NTerminals.Add(new Grammatics(index, m_nterminals[k]));
                 index++;
             }
             for (int k = 0; k < m_terminals.Count; k++)
             {
-                NTerminals.Add(new Grammatics(index, m_terminals[k]));
+                m_NTerminals.Add(new Grammatics(index, m_terminals[k]));
                 index++;
             }
         }
@@ -136,7 +136,7 @@ namespace AnalysisDown
         /// Загрузка управялющей таблицы
         /// </summary>
         /// <returns></returns>
-        public int[,] Read_ControlTable()
+        public void Read_ControlTable()
         {
             int widht = System.IO.File.ReadAllLines(m_pathToTabel).Length;
             int length = Length_line_parser(m_pathToTabel, ',');
@@ -154,8 +154,7 @@ namespace AnalysisDown
                     }
                     str_number++;
                 }
-            }
-            return rule_table;
+            } 
         }
         /// <summary>
         /// Парсим {,} для определения правильной длины строки
@@ -172,7 +171,24 @@ namespace AnalysisDown
             }
         }
 
-        
+        public List<Grammatics> Terminals
+        {
+            get { return m_Terminals; }
+        }
+        public List<Grammatics> NTerminals
+        {
+            get { return m_NTerminals; }
+        }
+
+        public List<Grammatics> Rules
+        {
+            get { return m_Rules; }
+        }
+
+        public int [,] Tabel
+        {
+            get { return rule_table; }
+        }
 
     }
 }

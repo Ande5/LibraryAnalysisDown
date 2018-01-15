@@ -36,15 +36,16 @@ namespace LibraryAnalysisDown
         private void button1_Click(object sender, EventArgs e)
         {
             richTextBox1.Clear();
-            analysis = new InitializeAnalysisDown(textBox1.Text);
-           // analysis.Initialize(richTextBox1.Text, textBox1.Text);
+            LLParserLoader ll_parser = new LLParserLoader("MyTabel.txt", "MyGramm.txt");
+            ll_parser.Read_Regulation();
+            ll_parser.CheckRule_terminals();
+            ll_parser.Read_ControlTable();
+            analysis = new InitializeAnalysisDown(textBox1.Text,ll_parser.Tabel,ll_parser.Rules,ll_parser.Terminals, ll_parser.NTerminals);
         }
 
         private void butCheckRule_Click(object sender, EventArgs e)
         {
-            LLParserLoader ll_parser = new LLParserLoader("mytabel.txt", "MyGramm.txt");
-            ll_parser.Read_Regulation();
-            ll_parser.CheckRule_terminals();
+           
         }
     }
 }

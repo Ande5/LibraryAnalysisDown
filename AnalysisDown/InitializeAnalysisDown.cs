@@ -8,7 +8,7 @@ namespace AnalysisDown
 {
     public class InitializeAnalysisDown
     {
-        int[,] m_tabel = {
+        int[,] tabel = {
                                      {1,28,28,28,28,28,28,28,28,28,28,28,28,28,2},
                                      {28,3,28,28,28,28,28,28,28,28,28,28,28,28,28},
                                      {28,28,4,28,28,28,28,28,28,28,28,28,28,28,28},
@@ -117,30 +117,16 @@ namespace AnalysisDown
             new Grammatics(26,"|"),
             new Grammatics(27,"$"),
         };
-
-        //public void LoadingTabel()
-        //{
-        //    analysis_down.LoadingTabel = m_tabel;
-        //}
-
-        //public void LoadingGrammatics()
-        //{
-        //    analysis_down.LoadingGrammatics = Rule;
-        //}
-        //public void LoadingTerminals()
-        //{
-        //    analysis_down.LoadingTerminals = Terminals;
-        //}
-        //public void Initialize(string richTextBox1, string text)
-        //{
-        //    analysis_down.LoadingAnalysis(m_tabel, Rule, Terminals, NTerminals);
-        //    analysis_down.AnalysisStart(text);
-        //}
         private InitializeAnalysisDown() { }
 
         public InitializeAnalysisDown(string text)
         {
-            m_analysis_down = new AnalysisDownNew2(Rule, m_tabel,Terminals, NTerminals);
+            m_analysis_down = new AnalysisDownNew2(Rule, tabel,Terminals, NTerminals);
+            m_analysis_down.Run(text);
+        }
+        public InitializeAnalysisDown(string text, int [,] m_tabel, List<Grammatics> m_rule, List<Grammatics> m_terminals, List<Grammatics> m_nterminals)
+        {
+            m_analysis_down = new AnalysisDownNew2(m_rule, m_tabel, m_terminals, m_nterminals);
             m_analysis_down.Run(text);
         }
         AnalysisDownNew2 m_analysis_down;
