@@ -174,7 +174,6 @@ namespace AnalysisDown
                     break;
                 }
             }
-
         }
         public int Search_Index_J(string symbol)
         {
